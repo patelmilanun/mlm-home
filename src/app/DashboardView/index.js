@@ -196,7 +196,7 @@ const HomeView = () => {
             <Hidden smDown>
               <Grid item xs={12} md={6}>
                 <img
-                  src="/static/undraw_Online_learning_re_qw08.svg"
+                  src="static/undraw_Online_learning_re_qw08.svg"
                   alt="learn"
                   width="100%"
                 />
