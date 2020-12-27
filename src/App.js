@@ -10,8 +10,12 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router history={history}>
-        <Route path="/" component={HomeView} />
-        <Route path="/dashboard" component={DashboardView} />
+        <Route path="/" exact render={(props) => <HomeView {...props} />} />
+        <Route
+          path="/dashboard"
+          exact
+          render={(props) => <DashboardView {...props} />}
+        />
       </Router>
     </ThemeProvider>
   );
