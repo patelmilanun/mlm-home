@@ -9,7 +9,8 @@ pages:
   script:
     - npx pnpm i --frozen-lockfile
     - npx pnpm run build
-    - mv build/* public/
+    - rm -rf public
+    - mv build public
   artifacts:
     paths:
       - public # mandatory, other folder won't work
