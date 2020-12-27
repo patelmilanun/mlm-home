@@ -1,6 +1,6 @@
 dependencies:
   '@material-ui/core': 4.11.2_react-dom@17.0.1+react@17.0.1
-  history: 5.0.0
+  history: 4.10.1
   react: 17.0.1
   react-dom: 17.0.1_react@17.0.1
   react-feather: 2.0.9_react@17.0.1
@@ -5868,12 +5868,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-36nwAD620w12kuzPAsyINPWJqlNbij+hpK1k9XRloDtym8mxzGYl2c17LnV6IAGB2Dmg4tEa7G7DlawS0+qjew==
-  /history/5.0.0:
-    dependencies:
-      '@babel/runtime': 7.12.5
-    dev: false
-    resolution:
-      integrity: sha512-3NyRMKIiFSJmIPdq7FxkNMJkQ7ZEtVblOQ38VtKaA0zZMW1Eo6Q6W8oDKEflr1kNNTItSnk4JMCO1deeSgbLLg==
   /hmac-drbg/1.0.1:
     dependencies:
       hash.js: 1.1.7
@@ -12386,7 +12380,7 @@ packages:
       integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 specifiers:
   '@material-ui/core': ^4.11.2
-  history: ^5.0.0
+  history: ^4.10.1
   react: ^17.0.1
   react-dom: ^17.0.1
   react-feather: ^2.0.9
