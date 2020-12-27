@@ -183,7 +183,7 @@ const HomeView = () => {
                   component={NavLink}
                   color="primary"
                   variant="contained"
-                  to={"dashboard"}
+                  to={"/dashboard"}
                 >
                   <Typography display="inline" variant="subtitle2">
                     <Box px={4} py={1}>
