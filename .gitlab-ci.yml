@@ -7,8 +7,8 @@ pages:
 
   stage: deploy
   script:
-    - pnpm install
-    - pnpm run build
+    - npx pnpm i --frozen-lockfile
+    - npx pnpm run build
     - mv build/* public/
   artifacts:
     paths:
