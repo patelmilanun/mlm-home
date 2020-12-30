@@ -87,9 +87,10 @@ const HomeView = () => {
               <Grid item xs={4}>
                 <Box display="flex">
                   <Box mr={2}>
-                    <img alt="logo" src="static/logo.svg" width="40" />
+                    <img alt="logo" src="/static/logo-full.svg" width="250" />
+                    {/* <img alt="logo" src="/static/logo2.svg" width="40" /> */}
                   </Box>
-                  <Typography variant="h5">Inspireonics</Typography>
+                  {/* <Typography variant="h5">Inspireonics</Typography> */}
                 </Box>
               </Grid>
               <Grid item xs={4}>
@@ -102,7 +103,7 @@ const HomeView = () => {
                     return (
                       <Box key={index} mx={2} display="inline">
                         <Link
-                          // activeClassName={classes.activeLink}
+                          activeClassName={classes.activeLink}
                           className={classes.link}
                           color="inherit"
                           exact
@@ -183,7 +184,7 @@ const HomeView = () => {
                   component={NavLink}
                   color="primary"
                   variant="contained"
-                  to={"/dashboard"}
+                  to={"/app/dashboard"}
                 >
                   <Typography display="inline" variant="subtitle2">
                     <Box px={4} py={1}>
@@ -444,7 +445,7 @@ const HomeView = () => {
         <Container maxWidth="md">
           <Box display="flex" justifyContent="center" mb={4}>
             <Box mr={2}>
-              <img alt="logo" src="static/logo.svg" width="40" />
+              <img alt="logo" src="/static/logo-half.svg" width="40" />
             </Box>
             <Typography color="secondary" variant="h5">
               Inspireonics

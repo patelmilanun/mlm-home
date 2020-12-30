@@ -1,20 +1,17 @@
 import { ThemeProvider, CssBaseline } from "@material-ui/core";
 import { history } from "utils/history";
-import HomeView from "./app/HomeView";
-import DashboardView from "./app/DashboardView";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import routes, { renderRoutes } from "routes/routes";
+// import HomeView from "./app/HomeView";
+// import DashboardView from "./app/DashboardView";
+import { Route, Router, Switch } from "react-router-dom";
 import { theme } from "./Theme";
+import { theme2 } from "./Theme2";
 
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Router history={history}>
-        <Switch>
-          <Route exact path="/" component={HomeView} />
-          <Route path="/dashboard" component={DashboardView} />
-        </Switch>
-      </Router>
+      <Router history={history}>{renderRoutes(routes)}</Router>
     </ThemeProvider>
   );
 };

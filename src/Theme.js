@@ -42,7 +42,7 @@ export const theme = responsiveFontSizes(
       },
       h6: {
         fontSize: "1.25rem", //20px
-        fontWeight: 500,
+        fontWeight: 900,
       },
       subtitle1: {
         fontSize: "1.125rem", //18px
