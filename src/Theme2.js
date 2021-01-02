@@ -4,9 +4,11 @@ export const theme2 = {
   ...theme,
   palette: {
     ...theme.palette,
-    primary: {
-      ...theme.palette.primary,
+    primary: theme.palette.augmentColor({
       main: "#243e63",
-    },
+    }),
+    secondary: theme.palette.augmentColor({
+      main: "#634924",
+    }),
   },
 };

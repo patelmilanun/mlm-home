@@ -43,11 +43,11 @@ const useStyles = makeStyles((theme) => ({
   },
   activNavItem: {
     color: "#FFFFFF",
-    backgroundColor: "#243e63",
+    backgroundColor: theme.palette.primary.main,
     borderBottomLeftRadius: 30,
     borderTopLeftRadius: 30,
     "&:hover, &:focus": {
-      backgroundColor: "#243e63",
+      backgroundColor: theme.palette.primary.dark,
     },
   },
 }));
