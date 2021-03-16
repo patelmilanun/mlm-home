@@ -11,4 +11,12 @@ export const theme2 = {
       main: "#634924",
     }),
   },
+  props: {
+    ...theme.props,
+    MuiTextField: {
+      InputLabelProps: {
+        style: { color: "rgb(160, 174, 192)" },
+      },
+    },
+  },
 };
