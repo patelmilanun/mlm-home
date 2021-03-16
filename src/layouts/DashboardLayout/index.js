@@ -1,6 +1,8 @@
-import { Box, useMediaQuery, Hidden } from "@material-ui/core";
+import { Box, useMediaQuery } from "@material-ui/core";
 import Sidebar from "./sidebar";
+import Topbar from "./topbar";
 import { useTheme } from "@material-ui/core/styles";
+import { useSelector } from "store";
 
 const DashboardLayout = ({ children }) => {
   const theme = useTheme();
@@ -8,12 +10,16 @@ const DashboardLayout = ({ children }) => {
     defaultMatches: true,
   });
 
+  const { sidebar, isFullScreen } = useSelector((state) => state.common);
+
   return (
     <>
-      <Hidden smDown>
-        <Sidebar />
-      </Hidden>
-      <Box ml={isSmall ? 0 : 30}>{children}</Box>
+      <Sidebar />
+
+      <Box ml={isSmall || isFullScreen ? 0 : sidebar === "full" ? 30 : 11}>
+        <Topbar />
+        {children}
+      </Box>
     </>
   );
 };
