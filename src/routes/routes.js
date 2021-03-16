@@ -6,6 +6,7 @@ import LoadingScreen from "components/LoadingScreen";
 import GuestGuard from "./GuestGuard";
 import AuthGuard from "./AuthGuard";
 import { theme2 } from "Theme2";
+import TitleProvider from "components/TitleProvider";
 
 export const renderRoutes = (routes = []) => (
   <Suspense fallback={<LoadingScreen />}>
@@ -15,35 +16,38 @@ export const renderRoutes = (routes = []) => (
         const Layout = route.layout || Fragment;
         const Component = route.component;
         const customTheme = route.customTheme;
+        const title = route.title || "";
+
+        const layoutToRender = (props) => (
+          <Layout>
+            {route.routes ? (
+              renderRoutes(route.routes)
+            ) : (
+              <TitleProvider title={title}>
+                <Component {...props} />
+              </TitleProvider>
+            )}
+          </Layout>
+        );
 
         return (
           <Route
             key={i}
             path={route.path}
             exact={route.exact}
-            render={(props) => (
-              <Guard>
-                {customTheme ? (
-                  <ThemeProvider theme={customTheme}>
-                    <Layout>
-                      {route.routes ? (
-                        renderRoutes(route.routes)
-                      ) : (
-                        <Component {...props} />
-                      )}
-                    </Layout>
-                  </ThemeProvider>
-                ) : (
-                  <Layout>
-                    {route.routes ? (
-                      renderRoutes(route.routes)
-                    ) : (
-                      <Component {...props} />
-                    )}
-                  </Layout>
-                )}
-              </Guard>
-            )}
+            render={(props) => {
+              return (
+                <Guard>
+                  {customTheme ? (
+                    <ThemeProvider theme={customTheme}>
+                      {layoutToRender(props)}
+                    </ThemeProvider>
+                  ) : (
+                    layoutToRender(props)
+                  )}
+                </Guard>
+              );
+            }}
           />
         );
       })}
@@ -66,32 +70,47 @@ const routes = [
       {
         exact: true,
         path: "/app/dashboard",
+        title: "Dashboard",
         component: lazy(() => import("views/app/DashboardView")),
       },
       {
         exact: true,
         path: "/app/course",
-        component: lazy(() => import("views/app/DashboardView")),
+        title: "Course",
+        component: lazy(() => import("views/app/CourseListView")),
+      },
+      {
+        exact: true,
+        path: "/app/course/:id",
+        title: "View Course",
+        component: lazy(() => import("views/app/CourseView")),
+      },
+      {
+        exact: true,
+        path: "/app/setting",
+        title: "Settings",
+        component: lazy(() => import("views/app/SettingView")),
       },
     ],
   },
-  //   {
-  //     path: "/auth",
-  //     guard: GuestGuard,
-  //     layout: HomeLayout,
-  //     routes: [
-  //       {
-  //         exact: true,
-  //         path: "/auth/login",
-  //         component: lazy(() => import("views/auth/LoginView")),
-  //       },
-  //       {
-  //         exact: true,
-  //         path: "/auth/signup",
-  //         component: lazy(() => import("views/auth/RegisterView")),
-  //       },
-  //     ],
-  //   },
+  {
+    path: "/auth",
+    guard: GuestGuard,
+    // layout: HomeLayout,
+    customTheme: theme2,
+    routes: [
+      {
+        exact: true,
+        path: "/auth/login",
+        component: lazy(() => import("views/auth/LoginView")),
+      },
+      {
+        exact: true,
+        path: "/auth/signup",
+        component: lazy(() => import("views/auth/RegisterView")),
+      },
+    ],
+  },
   {
     path: "*",
     routes: [
