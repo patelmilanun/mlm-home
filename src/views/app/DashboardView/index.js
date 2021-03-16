@@ -1,17 +1,8 @@
 import { NavLink } from "react-router-dom";
-import { history } from "utils/history";
 import {
-  AppBar,
-  Toolbar,
   Typography,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
   Divider,
-  Drawer,
   Box,
-  IconButton,
   Button,
   Card,
   CardContent,
@@ -24,20 +15,13 @@ import {
 } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import {
-  Monitor,
-  Video,
   Share2,
   DollarSign,
-  Settings,
-  Menu,
   Users,
   Check,
   ExternalLink,
-  ChevronDown,
   ArrowRight,
 } from "react-feather";
-
-import Sidebar from "components/Sidebar";
 
 const useStyles = makeStyles((theme) => ({
   cardIcon: {
@@ -105,35 +89,6 @@ const DashboardView = () => {
       <Box>
         <Box my={2}>
           <Container maxWidth="xl">
-            <Box mb={2}>
-              <Grid container justify="space-between" alignItems="center">
-                <Grid item>
-                  <Typography variant="h4">Dashboard</Typography>
-                </Grid>
-                <Grid item>
-                  <Button
-                    variant="contained"
-                    disableElevation
-                    className={classes.miniProfileContainer}
-                    endIcon={
-                      <Box px={1}>
-                        <ChevronDown
-                          size="20"
-                          className={classes.miniProfileDownArrow}
-                        />
-                      </Box>
-                    }
-                  >
-                    <Avatar
-                      className={classes.smallAvatar}
-                      alt="user"
-                      src="https://i.pravatar.cc/50"
-                    />
-                  </Button>
-                </Grid>
-              </Grid>
-            </Box>
-
             <Grid container spacing={3} justify="space-between">
               <Grid item xs={12} md={6}>
                 <Grid container spacing={2}>
@@ -239,7 +194,7 @@ const DashboardView = () => {
                           },
                           { name: "How to tie a tie", value: 60 },
                         ].map((item, index) => (
-                          <>
+                          <Box key={index}>
                             <Box my={2}>
                               <Grid
                                 container
@@ -266,7 +221,7 @@ const DashboardView = () => {
                               </Grid>
                             </Box>
                             {index === 0 && <Divider />}
-                          </>
+                          </Box>
                         ))}
                       </CardContent>
                     </Card>
@@ -361,15 +316,15 @@ const DashboardView = () => {
                             profile: "https://i.pravatar.cc/145",
                           },
                         ].map((item, index) => (
-                          <>
-                            <Box my={2}>
+                          <Box key={index}>
+                            <Box my={2} key={index}>
                               <Grid
-                                spacing={4}
+                                // spacing={4}
                                 container
                                 justify="space-between"
                                 alignItems="center"
                               >
-                                <Grid item xs={3} md={2}>
+                                <Grid item xs={4} sm={3} md={3}>
                                   {/* <Box mb={2}> */}
                                   <Avatar
                                     className={classes.mediumAvatar}
@@ -378,7 +333,7 @@ const DashboardView = () => {
                                   />
                                   {/* </Box> */}
                                 </Grid>
-                                <Grid item xs={9} md={10}>
+                                <Grid item xs={8} sm={9} md={9}>
                                   <Typography variant="h6" noWrap>
                                     {item.name}
                                   </Typography>
@@ -392,7 +347,7 @@ const DashboardView = () => {
                               </Grid>
                             </Box>
                             {index !== 2 && <Divider />}
-                          </>
+                          </Box>
                         ))}
                       </CardContent>
                     </Card>
