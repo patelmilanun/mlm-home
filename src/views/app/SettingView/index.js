@@ -24,6 +24,8 @@ import {
 } from "@material-ui/core";
 import { history } from "utils/history";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import Avatars from "@dicebear/avatars";
+import sprites from "@dicebear/avatars-avataaars-sprites";
 import {
   Share2,
   DollarSign,
@@ -46,6 +48,8 @@ const useStyles = makeStyles((theme) => ({
     border: `3px solid #FFFFFF`,
   },
 }));
+
+const avatars = new Avatars(sprites, { dataUri: true, background: "#BDBDBD" });
 
 const SettingView = () => {
   const classes = useStyles();
@@ -103,7 +107,7 @@ const SettingView = () => {
                             <Avatar
                               className={classes.bigAvatar}
                               alt="user"
-                              src="https://i.pravatar.cc/150"
+                              src={avatars.create("John")}
                             />
                           </Badge>
                         </Box>

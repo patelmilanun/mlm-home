@@ -14,6 +14,8 @@ import {
   useMediaQuery,
 } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import Avatars from "@dicebear/avatars";
+import sprites from "@dicebear/avatars-avataaars-sprites";
 import {
   Share2,
   DollarSign,
@@ -74,6 +76,8 @@ const useStyles = makeStyles((theme) => ({
     height: 6,
   },
 }));
+
+const avatars = new Avatars(sprites, { dataUri: true, background: "#BDBDBD" });
 
 const DashboardView = () => {
   const classes = useStyles();
@@ -239,7 +243,7 @@ const DashboardView = () => {
                             <Avatar
                               className={classes.bigAvatar}
                               alt="user"
-                              src="https://i.pravatar.cc/150"
+                              src={avatars.create("John")}
                             />
                           </Box>
                           <Box my={2}>
@@ -303,17 +307,17 @@ const DashboardView = () => {
                           {
                             name: "Astha Datta",
                             email: "asthata@gmail.com",
-                            profile: "https://i.pravatar.cc/151",
+                            profile: avatars.create("Astha"),
                           },
                           {
                             name: "Charandeep Thakkar",
                             email: "charanar@gmail.com",
-                            profile: "https://i.pravatar.cc/155",
+                            profile: avatars.create("Charandeep"),
                           },
                           {
                             name: "Anees Nagy",
                             email: "aneegy@gmail.com",
-                            profile: "https://i.pravatar.cc/145",
+                            profile: avatars.create("Anees"),
                           },
                         ].map((item, index) => (
                           <Box key={index}>

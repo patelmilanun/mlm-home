@@ -8,6 +8,8 @@ import {
   useMediaQuery,
 } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import Avatars from "@dicebear/avatars";
+import sprites from "@dicebear/avatars-avataaars-sprites";
 import { useSelector } from "store";
 import { ChevronDown } from "react-feather";
 
@@ -31,6 +33,8 @@ const useStyles = makeStyles((theme) => ({
     verticalAlign: "middle",
   },
 }));
+
+const avatars = new Avatars(sprites, { dataUri: true, background: "#BDBDBD" });
 
 const Sidebar = () => {
   const classes = useStyles();
@@ -65,7 +69,7 @@ const Sidebar = () => {
               <Avatar
                 className={classes.smallAvatar}
                 alt="user"
-                // src="https://i.pravatar.cc/50"
+                src={avatars.create("John")}
               />
             </Button>
           </Grid>
