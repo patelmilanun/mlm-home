@@ -1,4 +1,6 @@
 dependencies:
+  '@dicebear/avatars': 4.5.4
+  '@dicebear/avatars-avataaars-sprites': 4.5.4_@dicebear+avatars@4.5.4
   '@material-ui/core': 4.11.2_react-dom@17.0.1+react@17.0.1
   '@reduxjs/toolkit': 1.5.0
   history: 4.10.1
@@ -1284,6 +1286,21 @@ packages:
     dev: false
     resolution:
       integrity: sha512-ij4wRiunFfaJxjB0BdrYHIH8FxBJpOwNPhhAcunlmPdXudL1WQV1qoP9un6JsEBAgQH+7UXyyjh0g7jTxXK6tg==
+  /@dicebear/avatars-avataaars-sprites/4.5.4_@dicebear+avatars@4.5.4:
+    dependencies:
+      '@dicebear/avatars': 4.5.4
+    dev: false
+    peerDependencies:
+      '@dicebear/avatars': ^4.0.0
+    resolution:
+      integrity: sha512-XU70/k+B3+4DOIj+890UWvTXXS8u5SWztpgueK0YYv6LRZryknGV2Q3eEqVCozo9o+egXcnqmI77v3wov3iZmw==
+  /@dicebear/avatars/4.5.4:
+    dependencies:
+      pure-color: 1.3.0
+      svgson: 4.1.0
+    dev: false
+    resolution:
+      integrity: sha512-SAKAeCMX3YSoZbLon28wYXMUwNLK3tzrAzPDipGqG+LKwxv7QJM9hV6Rz4hYtWZOEGy5fw4c22FV3koBntoSFw==
   /@emotion/hash/0.8.0:
     dev: false
     resolution:
@@ -3763,7 +3780,7 @@ packages:
     resolution:
       integrity: sha512-Se+LaxqXlVXGvmexKGPvnUIYC1jwXu1H6Pkyb3uBM5d8/NELMYCHs/4/roD7721NxrTLyv7e5nXd5/QLBO+10g==
   /core-js/2.6.12:
-    deprecated: 'core-js@<3 is no longer maintained and not recommended for usage due to the number of issues. Please, upgrade your dependencies to the actual version of core-js@3.'
+    deprecated: core-js@<3 is no longer maintained and not recommended for usage due to the number of issues. Please, upgrade your dependencies to the actual version of core-js@3.
     dev: false
     requiresBuild: true
     resolution:
@@ -4244,6 +4261,15 @@ packages:
     dev: false
     resolution:
       integrity: sha1-s2nW+128E+7PUk+RsHD+7cNXzzQ=
+  /deep-rename-keys/0.2.1:
+    dependencies:
+      kind-of: 3.2.2
+      rename-keys: 1.2.0
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha1-7eeFN9emaivmFRfir5Vtf1ij8dg=
   /deepmerge/4.2.2:
     dev: false
     engines:
@@ -5068,6 +5094,10 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
+  /eventemitter3/2.0.3:
+    dev: false
+    resolution:
+      integrity: sha1-teEHm1n7XhuidxwKmTvgYKWMmbo=
   /eventemitter3/4.0.7:
     dev: false
     resolution:
@@ -8306,6 +8336,15 @@ packages:
     dev: false
     resolution:
       integrity: sha512-PX1wu0AmAdPqOL1mWhqmlOd8kOIZQwGZw6rh7uby9fTc5lhaOWFLX3I6R1hrF9k3zUY40e6igsLGkDXK92LJNg==
+  /omit-deep/0.3.0:
+    dependencies:
+      is-plain-object: 2.0.4
+      unset-value: 0.1.2
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha1-IcivNJm8rdKWUaIyy8rLxSRF6+w=
   /on-finished/2.3.0:
     dependencies:
       ee-first: 1.1.1
@@ -9640,6 +9679,10 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
+  /pure-color/1.3.0:
+    dev: false
+    resolution:
+      integrity: sha1-H+Bk+wrIUfDeYTIKi/eWg2Qi8z4=
   /q/1.5.1:
     dev: false
     engines:
@@ -10147,6 +10190,12 @@ packages:
     dev: false
     resolution:
       integrity: sha1-wkvOKig62tW8P1jg1IJJuSN52O8=
+  /rename-keys/1.2.0:
+    dev: false
+    engines:
+      node: '>= 0.8.0'
+    resolution:
+      integrity: sha512-U7XpAktpbSgHTRSNRrjKSrjYkZKuhUukfoBlXWXUExCAqhzh1TU3BDRAfJmarcl5voKS+pbKU9MvyLWKZ4UEEg==
   /renderkid/2.0.4:
     dependencies:
       css-select: 1.2.0
@@ -10186,7 +10235,7 @@ packages:
       request-promise-core: 1.1.4_request@2.88.2
       stealthy-require: 1.1.1
       tough-cookie: 2.5.0
-    deprecated: 'request-promise-native has been deprecated because it extends the now deprecated request package, see https://github.com/request/request/issues/3142'
+    deprecated: request-promise-native has been deprecated because it extends the now deprecated request package, see https://github.com/request/request/issues/3142
     dev: false
     engines:
       node: '>=0.12.0'
@@ -10216,7 +10265,7 @@ packages:
       tough-cookie: 2.5.0
       tunnel-agent: 0.6.0
       uuid: 3.4.0
-    deprecated: 'request has been deprecated, see https://github.com/request/request/issues/3142'
+    deprecated: request has been deprecated, see https://github.com/request/request/issues/3142
     dev: false
     engines:
       node: '>= 6'
@@ -10296,7 +10345,7 @@ packages:
     resolution:
       integrity: sha512-QEb4A76c8Mi7I3xNKXlRKQSlLBwjUV/ULFMP+G7n3/7tJZ8MG5wsZ3ucxP1Jz8Vevn6fnJsxDx9cIls+utGzPQ==
   /resolve-url/0.2.1:
-    deprecated: 'https://github.com/lydell/resolve-url#deprecated'
+    deprecated: https://github.com/lydell/resolve-url#deprecated
     dev: false
     resolution:
       integrity: sha1-LGN/53yJOv0qZj/iGqkIAGjiBSo=
@@ -11236,6 +11285,14 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-yhy/sQYxR5BkC98CY7o31VGsg014AKLEPxdfhora76l36hD9Rdy5NZA/Ocn6yayNPgSamYdtX2rFJdcv07AYVw==
+  /svgson/4.1.0:
+    dependencies:
+      deep-rename-keys: 0.2.1
+      omit-deep: 0.3.0
+      xml-reader: 2.4.3
+    dev: false
+    resolution:
+      integrity: sha512-DodISxHtdLKUghDYA+PGK4Qq350+CbBAkdvGLkBFSmWd9WKSg4dijgjB1IiRPTmsUCd+a7KYe+ILHtklYgQyzQ==
   /symbol-observable/1.2.0:
     dev: false
     engines:
@@ -11716,6 +11773,15 @@ packages:
     dev: false
     resolution:
       integrity: sha1-j97XMk7G6IoP+LkF58CYzcCG1UQ=
+  /unset-value/0.1.2:
+    dependencies:
+      has-value: 0.3.1
+      isobject: 3.0.1
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha1-UGgQuGfyfCpabpsEgzYx9t5Y0xA=
   /unset-value/1.0.0:
     dependencies:
       has-value: 0.3.1
@@ -11738,7 +11804,7 @@ packages:
     resolution:
       integrity: sha512-B0yRTzYdUCCn9n+F4+Gh4yIDtMQcaJsmYBDsTSG8g/OejKBodLQ2IHfN3bM7jUsRXndopT7OIXWdYqc1fjmV6g==
   /urix/0.1.0:
-    deprecated: 'Please see https://github.com/lydell/urix#deprecated'
+    deprecated: Please see https://github.com/lydell/urix#deprecated
     dev: false
     resolution:
       integrity: sha1-2pN/emLiH+wf0Y1Js1wpNQZ6bHI=
@@ -12367,10 +12433,23 @@ packages:
         optional: true
     resolution:
       integrity: sha512-pTsP8UAfhy3sk1lSk/O/s4tjD0CRwvMnzvwr4OKGX7ZvqZtUyx4KIJB5JWbkykPoc55tixMGgTNoh3k4FkNGFQ==
+  /xml-lexer/0.2.2:
+    dependencies:
+      eventemitter3: 2.0.3
+    dev: false
+    resolution:
+      integrity: sha1-UYGTpKozTVj8fSSLVJB5uJkH4EY=
   /xml-name-validator/3.0.0:
     dev: false
     resolution:
       integrity: sha512-A5CUptxDsvxKJEU3yO6DuWBSJz/qizqzJKOMIfUJHETbBw/sFaDxgd6fxm1ewUaM0jZ444Fc5vC5ROYurg/4Pw==
+  /xml-reader/2.4.3:
+    dependencies:
+      eventemitter3: 2.0.3
+      xml-lexer: 0.2.2
+    dev: false
+    resolution:
+      integrity: sha1-n4EMr3xCWlqvuEixxFEDyecddTA=
   /xmlchars/2.2.0:
     dev: false
     resolution:
@@ -12455,6 +12534,8 @@ packages:
     resolution:
       integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 specifiers:
+  '@dicebear/avatars': ^4.5.4
+  '@dicebear/avatars-avataaars-sprites': ^4.5.4
   '@material-ui/core': ^4.11.2
   '@reduxjs/toolkit': ^1.5.0
   history: ^4.10.1
