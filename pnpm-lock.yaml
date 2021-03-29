@@ -1,16 +1,21 @@
 dependencies:
   '@dicebear/avatars': 4.5.4
   '@dicebear/avatars-avataaars-sprites': 4.5.4_@dicebear+avatars@4.5.4
+  '@hookform/resolvers': 1.3.6_react-hook-form@6.15.5
   '@material-ui/core': 4.11.2_react-dom@17.0.1+react@17.0.1
   '@reduxjs/toolkit': 1.5.0
+  axios: 0.21.1
   history: 4.10.1
   react: 17.0.1
   react-dom: 17.0.1_react@17.0.1
   react-feather: 2.0.9_react@17.0.1
+  react-hook-form: 6.15.5_react@17.0.1
   react-redux: 7.2.2_react-dom@17.0.1+react@17.0.1
   react-router-dom: 5.2.0_react@17.0.1
   react-scripts: 4.0.1
+  react-toastify: 7.0.3_react-dom@17.0.1+react@17.0.1
   video-react: 0.14.1_react-dom@17.0.1+react@17.0.1
+  yup: 0.32.9
 devDependencies:
   react-refresh: 0.9.0
 lockfileVersion: 5.2
@@ -1232,6 +1237,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-plcc+hbExy3McchJCEQG3knOsuh3HH+Prx1P6cLIkET/0dLuQDEnrT+s27Axgc9bqfsmNUNHfscgMUdBpC9xfg==
+  /@babel/runtime/7.13.10:
+    dependencies:
+      regenerator-runtime: 0.13.7
+    dev: false
+    resolution:
+      integrity: sha512-4QPkjJq6Ns3V/RgpEahRk+AGfL0eO6RHHtTWoNNr5mO49G6B5+X6d6THgWEAvTrznU5xYpbAlVKRYcsCgh/Akw==
   /@babel/template/7.12.7:
     dependencies:
       '@babel/code-frame': 7.12.11
@@ -1354,6 +1365,14 @@ packages:
     dev: false
     resolution:
       integrity: sha512-tAag0jEcjwH+P2quUfipd7liWCNX2F8NvYjQp2wtInsZxnMlypdw0FtAOLxtvvkO+GSRRbmNi8m/5y42PQJYCQ==
+  /@hookform/resolvers/1.3.6_react-hook-form@6.15.5:
+    dependencies:
+      react-hook-form: 6.15.5_react@17.0.1
+    dev: false
+    peerDependencies:
+      react-hook-form: '>=6.6.0'
+    resolution:
+      integrity: sha512-cXVEEk2tQbNZ+NVBjh5etuLNgHB0Cy39SbnAIl81GgDXpSuMPfDHmDyOp/58Y2Rh7dMR+j9fG+6sFAKbhRdVnA==
   /@istanbuljs/load-nyc-config/1.1.0:
     dependencies:
       camelcase: 5.3.1
@@ -2000,6 +2019,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
+  /@types/lodash/4.14.168:
+    dev: false
+    resolution:
+      integrity: sha512-oVfRvqHV/V6D1yifJbVRU3TMp8OT6o6BG+U9MkwuJ3U8/CsDHvalRpsxBqivn71ztOFZBTfJMvETbqHiaNSj7Q==
   /@types/minimatch/3.0.3:
     dev: false
     resolution:
@@ -2777,6 +2800,12 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-5Kgy8Cz6LPC9DJcNb3yjAXTu3XihQgEdnIg50c//zOC/MyLP0Clg+Y8Sh9ZjjnvBrDZU4DgXS9C3T9r4/scGZQ==
+  /axios/0.21.1:
+    dependencies:
+      follow-redirects: 1.13.3
+    dev: false
+    resolution:
+      integrity: sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
   /axobject-query/2.2.0:
     dev: false
     resolution:
@@ -5478,6 +5507,17 @@ packages:
         optional: true
     resolution:
       integrity: sha512-SSG5xmZh1mkPGyKzjZP8zLjltIfpW32Y5QpdNJyjcfGxK3qo3NDDkZOZSFiGn1A6SclQxY9GzEwAHQ3dmYRWpg==
+  /follow-redirects/1.13.3:
+    dev: false
+    engines:
+      node: '>=4.0'
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    resolution:
+      integrity: sha512-DUgl6+HDzB0iEptNQEXLx/KhTmDb8tZUHSeLqpnjpknR70H0nC2t9N73BK6fN4hOvJ84pKlIQVQ4k5FFlBedKA==
   /for-in/1.0.2:
     dev: false
     engines:
@@ -7606,6 +7646,10 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==
+  /lodash-es/4.17.21:
+    dev: false
+    resolution:
+      integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
   /lodash._reinterpolate/3.0.0:
     dev: false
     resolution:
@@ -7643,6 +7687,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
+  /lodash/4.17.21:
+    dev: false
+    resolution:
+      integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
   /loglevel/1.7.1:
     dev: false
     engines:
@@ -8027,6 +8075,10 @@ packages:
     optional: true
     resolution:
       integrity: sha512-M2ufzIiINKCuDfBSAUr1vWQ+vuVcA9kqx8JJUsbQi6yf1uGRyb7HfpdfUr5qLXf3B/t8dPvcjhKMmlfnP47EzQ==
+  /nanoclone/0.2.1:
+    dev: false
+    resolution:
+      integrity: sha512-wynEP02LmIbLpcYw8uBKpcfF6dmg2vcpKqxeH5UcoKEYdExslsdUA4ugFauuaeYdTB76ez6gJW8XAZ6CgkXYxA==
   /nanoid/3.1.20:
     dev: false
     engines:
@@ -9615,6 +9667,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
+  /property-expr/2.0.4:
+    dev: false
+    resolution:
+      integrity: sha512-sFPkHQjVKheDNnPvotjQmm3KD3uk1fWKUN7CrpdbwmUx3CrG3QiM8QpTSimvig5vTXmTvjz7+TDvXOI9+4rkcg==
   /proxy-addr/2.0.6:
     dependencies:
       forwarded: 0.1.2
@@ -9831,6 +9887,14 @@ packages:
       react: ^16.8.6 || ^17
     resolution:
       integrity: sha512-yMfCGRkZdXwIs23Zw/zIWCJO3m3tlaUvtHiXlW+3FH7cIT6fiK1iJ7RJWugXq7Fso8ZaQyUm92/GOOHXvkiVUw==
+  /react-hook-form/6.15.5_react@17.0.1:
+    dependencies:
+      react: 17.0.1
+    dev: false
+    peerDependencies:
+      react: ^16.8.0 || ^17
+    resolution:
+      integrity: sha512-so2jEPYKdVk1olMo+HQ9D9n1hVzaPPFO4wsjgSeZ964R7q7CHsYRbVF0PGBi83FcycA5482WHflasdwLIUVENg==
   /react-is/16.13.1:
     dev: false
     resolution:
@@ -9979,6 +10043,17 @@ packages:
         optional: true
     resolution:
       integrity: sha512-NnniMSC/wjwhcJAyPJCWtxx6CWONqgvGgV9+QXj1bwoW/JI++YF1eEf3Upf/mQ9KmP57IBdjzWs1XvnPq7qMTQ==
+  /react-toastify/7.0.3_react-dom@17.0.1+react@17.0.1:
+    dependencies:
+      clsx: 1.1.1
+      react: 17.0.1
+      react-dom: 17.0.1_react@17.0.1
+    dev: false
+    peerDependencies:
+      react: '>=16'
+      react-dom: '>=16'
+    resolution:
+      integrity: sha512-cxZ5rfurC8LzcZQMTYc8RHIkQTs+BFur18Pzk6Loz6uS8OXUWm6nXVlH/wqglz4Z7UAE8xxcF5mRjfE13487uQ==
   /react-transition-group/4.4.1_react-dom@17.0.1+react@17.0.1:
     dependencies:
       '@babel/runtime': 7.12.5
@@ -11523,6 +11598,10 @@ packages:
       node: '>=0.6'
     resolution:
       integrity: sha512-yaOH/Pk/VEhBWWTlhI+qXxDFXlejDGcQipMlyxda9nthulaxLZUNcUqFxokp0vcYnvteJln5FNQDRrxj3YcbVw==
+  /toposort/2.0.2:
+    dev: false
+    resolution:
+      integrity: sha1-riF2gXXRVZ1IvvNUILL0li8JwzA=
   /tough-cookie/2.5.0:
     dependencies:
       psl: 1.8.0
@@ -12533,17 +12612,36 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
+  /yup/0.32.9:
+    dependencies:
+      '@babel/runtime': 7.13.10
+      '@types/lodash': 4.14.168
+      lodash: 4.17.21
+      lodash-es: 4.17.21
+      nanoclone: 0.2.1
+      property-expr: 2.0.4
+      toposort: 2.0.2
+    dev: false
+    engines:
+      node: '>=10'
+    resolution:
+      integrity: sha512-Ci1qN+i2H0XpY7syDQ0k5zKQ/DoxO0LzPg8PAR/X4Mpj6DqaeCoIYEEjDJwhArh3Fa7GWbQQVDZKeXYlSH4JMg==
 specifiers:
   '@dicebear/avatars': ^4.5.4
   '@dicebear/avatars-avataaars-sprites': ^4.5.4
+  '@hookform/resolvers': ^1.3.6
   '@material-ui/core': ^4.11.2
   '@reduxjs/toolkit': ^1.5.0
+  axios: ^0.21.1
   history: ^4.10.1
   react: ^17.0.1
   react-dom: ^17.0.1
   react-feather: ^2.0.9
+  react-hook-form: ^6.15.5
   react-redux: ^7.2.2
   react-refresh: ^0.9.0
   react-router-dom: ^5.2.0
   react-scripts: 4.0.1
+  react-toastify: ^7.0.3
   video-react: ^0.14.1
+  yup: ^0.32.9
