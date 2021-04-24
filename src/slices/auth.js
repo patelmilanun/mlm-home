@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import CustomSnackbar from "components/CustomSnackbar";
+import CustomSnackbar from "components/CustomSnackbar";
 import axios from "utils/axios";
 
 const initialState = {
@@ -42,8 +42,7 @@ export const signup = (data) => async (dispatch) => {
   const response = await axios
     .post("/v1/auth/register", data)
     .catch((error) => {
-      console.log(error);
-      //   CustomSnackbar("error", error.errorToDisplay);
+      CustomSnackbar("error", error.response.data.message);
     });
   if (response) {
     dispatch(slice.actions.setPaymentLink(response.data.paymentLink));
