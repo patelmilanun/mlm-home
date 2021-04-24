@@ -54,6 +54,10 @@ const validationSchema = yup.object().shape({
       /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
       "Password must contains atleast 1 latter and 1 number"
     ),
+  referedBy: yup.string().matches(/^[0-9a-fA-F]{24}$/, {
+    message: "Invalid referal id",
+    excludeEmptyString: true,
+  }),
 });
 
 const RegisterView = () => {
