@@ -4,6 +4,7 @@ import axios from "utils/axios";
 
 const initialState = {
   user: {},
+  paymentLink: "",
   isLoading: false,
   isSubmitting: false,
 };
@@ -14,6 +15,9 @@ const slice = createSlice({
   reducers: {
     setUser(state, action) {
       state.user = action.payload;
+    },
+    setPaymentLink(state, action) {
+      state.paymentLink = action.payload;
     },
     setLoading(state, action) {
       state.isLoading = action.payload;
@@ -42,7 +46,7 @@ export const signup = (data) => async (dispatch) => {
       //   CustomSnackbar("error", error.errorToDisplay);
     });
   if (response) {
-    console.log(response);
+    dispatch(slice.actions.setPaymentLink(response.data.paymentLink));
     return response;
   }
 };

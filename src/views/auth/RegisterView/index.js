@@ -43,8 +43,8 @@ const validationSchema = yup.object().shape({
   name: yup.string().required("Full name is required"),
   phoneNumber: yup
     .string()
-    .required("Email is required")
-    .matches(/^[6789]\d{9}$/, "Phone number is invalid"),
+    .required("Contact number is required")
+    .matches(/^[6789]\d{9}$/, "Contact number is invalid"),
   email: yup.string().required("Email is required").email("Email is invalid"),
   password: yup
     .string()
@@ -64,8 +64,9 @@ const RegisterView = () => {
     defaultMatches: true,
   });
 
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(0);
 
+  const { paymentLink } = useSelector((state) => state.auth);
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(validationSchema),
   });
@@ -102,8 +103,8 @@ const RegisterView = () => {
                           <form
                             noValidate
                             onSubmit={handleSubmit(async (data) => {
-                              await dispatch(signup(data));
-                              setStep(step + 1);
+                              const res = await dispatch(signup(data));
+                              if (res) setStep(step + 1);
                             })}
                           >
                             <Box my={2}>
@@ -146,22 +147,35 @@ const RegisterView = () => {
                                 helperText={errors.password?.message}
                               />
                             </Box>
-                            <Box my={2}>
-                              <TextField
-                                id="phoneNumber"
-                                name="phoneNumber"
-                                label="Contact Number"
-                                variant="outlined"
-                                fullWidth
-                                required
-                                inputRef={register}
-                                error={!!errors.phoneNumber}
-                                helperText={
-                                  errors.phoneNumber?.message ||
-                                  "without country code"
-                                }
-                              />
-                            </Box>
+                            <Grid container spacing={1} justify="space-between">
+                              <Hidden smDown>
+                                <Grid item xs={2}>
+                                  <TextField
+                                    variant="outlined"
+                                    value="+91"
+                                    fullWidth
+                                    disabled
+                                  />
+                                </Grid>
+                              </Hidden>
+                              <Grid item xs={12} md={10}>
+                                <TextField
+                                  id="phoneNumber"
+                                  name="phoneNumber"
+                                  label="Contact Number"
+                                  variant="outlined"
+                                  fullWidth
+                                  required
+                                  inputRef={register}
+                                  error={!!errors.phoneNumber}
+                                  helperText={
+                                    errors.phoneNumber?.message ||
+                                    (isSmall && "without country code")
+                                  }
+                                />
+                              </Grid>
+                            </Grid>
+
                             <Box my={2}>
                               <TextField
                                 id="referedBy"
@@ -183,7 +197,6 @@ const RegisterView = () => {
                               type="submit"
                               fullWidth
                               startIcon={<LogIn />}
-                              onClick={() => setStep(1)}
                             >
                               <Box my={1}>
                                 <Typography variant="subtitle2">
@@ -237,6 +250,14 @@ const RegisterView = () => {
                               type="submit"
                               fullWidth
                               startIcon={<Lock />}
+                              onClick={() => {
+                                window.open(
+                                  paymentLink,
+                                  "",
+                                  "width=1000, height=1000"
+                                );
+                                setStep(2);
+                              }}
                             >
                               <Box my={1}>
                                 <Typography variant="subtitle2">
