@@ -106,6 +106,11 @@ const routes = [
       },
       {
         exact: true,
+        path: "/auth/register-payment-status",
+        component: lazy(() => import("views/pub/PaymentStatus")),
+      },
+      {
+        exact: true,
         path: "/auth/signup",
         component: lazy(() => import("views/auth/RegisterView")),
       },
