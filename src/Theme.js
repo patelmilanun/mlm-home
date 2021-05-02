@@ -72,6 +72,13 @@ export const theme = responsiveFontSizes(
           textTransform: "none",
         },
       },
+      MuiCardContent: {
+        root: {
+          "&:last-child": {
+            paddingBottom: "16px",
+          },
+        },
+      },
     },
   })
 );
