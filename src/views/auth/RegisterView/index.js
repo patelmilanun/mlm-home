@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import {
   Typography,
@@ -24,8 +24,9 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "store";
-import { signup } from "slices/auth";
+import { signup, fetchPaymentStatus } from "slices/auth";
 import { Lock, LogIn } from "react-feather";
+import { Check } from "react-feather";
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -53,11 +54,13 @@ const validationSchema = yup.object().shape({
     .matches(/\d/, "Password must contain at least 1 number")
     .matches(/[a-zA-Z]/, "Password must contain at least 1 letter"),
   referedBy: yup.string().matches(/^[0-9a-fA-F]{24}$/, {
-    message: "Invalid referal id",
+    message: "Invalid referral id",
     excludeEmptyString: true,
   }),
 });
 
+var fetchInterval;
+var timer = 60;
 const RegisterView = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -66,12 +69,31 @@ const RegisterView = () => {
     defaultMatches: true,
   });
 
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(1);
+  const [seconds, setSeconds] = useState(60);
 
-  const { paymentLink } = useSelector((state) => state.auth);
+  const { paymentLink, paymentStatus, user } = useSelector(
+    (state) => state.auth
+  );
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(validationSchema),
   });
+
+  useEffect(() => {
+    if (step === 2) {
+      fetchInterval = setInterval(async () => {
+        timer--;
+        if (timer < 1) {
+          timer = 60;
+          await dispatch(fetchPaymentStatus({ userId: user.id }));
+        }
+        setSeconds(timer);
+      }, 1000);
+    }
+    return () => {
+      clearInterval(fetchInterval);
+    };
+  }, [step, user]);
 
   return (
     <>
@@ -182,14 +204,14 @@ const RegisterView = () => {
                               <TextField
                                 id="referedBy"
                                 name="referedBy"
-                                label="Referal Id"
+                                label="Referral Id"
                                 variant="outlined"
                                 fullWidth
                                 inputRef={register}
                                 error={!!errors.referedBy}
                                 helperText={
                                   errors.referedBy?.message ||
-                                  "Leave referal id blank if you dont have"
+                                  "Leave referral id blank if you dont have"
                                 }
                               />
                             </Box>
@@ -282,13 +304,16 @@ const RegisterView = () => {
                             </Typography>
                             <br />
                             <br />
-                            <Typography variant="h1">59 sec</Typography>
+                            <Typography variant="h1">{seconds} sec</Typography>
                             <br />
                             <Link
                               component="button"
                               variant="subtitle1"
-                              onClick={() => {
-                                console.info("I'm a button.");
+                              onClick={async () => {
+                                timer = 60;
+                                await dispatch(
+                                  fetchPaymentStatus({ userId: user.id })
+                                );
                               }}
                             >
                               check now
@@ -301,12 +326,18 @@ const RegisterView = () => {
                               fullWidth
                               disabled
                               startIcon={
-                                <CircularProgress size={20} color="primary" />
+                                paymentStatus === "paymentCompleted" ? (
+                                  <Check size={20} />
+                                ) : (
+                                  <CircularProgress size={20} color="primary" />
+                                )
                               }
                             >
                               <Box my={1} mx={1}>
                                 <Typography variant="subtitle2">
-                                  Please Wait
+                                  {paymentStatus === "paymentCompleted"
+                                    ? "Payment Completed"
+                                    : "Please Wait"}
                                 </Typography>
                               </Box>
                             </Button>

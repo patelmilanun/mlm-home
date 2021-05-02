@@ -7,6 +7,7 @@ const initialState = {
   paymentLink: "",
   isLoading: false,
   isSubmitting: false,
+  paymentStatus: "paymentPending",
 };
 
 const slice = createSlice({
@@ -24,6 +25,9 @@ const slice = createSlice({
     },
     setSubmitting(state, action) {
       state.isSubmitting = action.payload;
+    },
+    setPaymentStatus(state, action) {
+      state.paymentStatus = action.payload;
     },
   },
 });
@@ -46,6 +50,19 @@ export const signup = (data) => async (dispatch) => {
     });
   if (response) {
     dispatch(slice.actions.setPaymentLink(response.data.paymentLink));
+    dispatch(slice.actions.setUser(response.data.user));
+    return response;
+  }
+};
+
+export const fetchPaymentStatus = (data) => async (dispatch) => {
+  const response = await axios
+    .get(`/v1/auth/register-payment-status/${data.userId}`, {})
+    .catch((error) => {
+      CustomSnackbar("error", error.response.data.message);
+    });
+  if (response) {
+    dispatch(slice.actions.setPaymentStatus(response.data.paymentStatus));
     return response;
   }
 };
