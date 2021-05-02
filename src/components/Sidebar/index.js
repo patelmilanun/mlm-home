@@ -81,11 +81,11 @@ const Sidebar = () => {
               {[
                 { text: "Dashboard", icon: Monitor, path: "/app/dashboard" },
                 { text: "Course Video", icon: Video, path: "/app/course" },
-                { text: "Referal Tree", icon: Share2, path: "/app/referal" },
+                { text: "Referral Tree", icon: Share2, path: "/app/referral" },
                 {
-                  text: "Widthdrwal",
+                  text: "Withdrawal",
                   icon: DollarSign,
-                  path: "/app/widthdrwal",
+                  path: "/app/withdrawal",
                 },
               ].map((item, index) => (
                 <ListItem

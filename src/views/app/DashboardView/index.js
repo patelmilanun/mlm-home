@@ -264,7 +264,7 @@ const DashboardView = () => {
                               className={classes.btnShareRefLinkTextContainer}
                             >
                               <Typography variant="subtitle2">
-                                Share Your Referal Link
+                                Share Your Referral Link
                               </Typography>
                             </Box>
                           </Button>
@@ -282,7 +282,7 @@ const DashboardView = () => {
                         >
                           <Grid item xs={9}>
                             <Typography variant="h6">
-                              Recent Joins via Your Referal
+                              Recent Joins via Your Referral
                             </Typography>
                           </Grid>
                           <Grid item xs={3}>

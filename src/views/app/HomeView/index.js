@@ -427,12 +427,12 @@ const HomeView = () => {
                 }
               >
                 <Typography variant="subtitle1" align="left">
-                  Do you provide referal bonus?
+                  Do you provide referral bonus?
                 </Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <Typography variant="body2" align="left">
-                  Yes, we provide 10 level referal bonus.
+                  Yes, we provide 10 level referral bonus.
                 </Typography>
               </AccordionDetails>
             </Accordion>
