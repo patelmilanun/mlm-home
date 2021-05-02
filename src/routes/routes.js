@@ -87,6 +87,18 @@ const routes = [
       },
       {
         exact: true,
+        path: "/app/referral",
+        title: "Referral",
+        component: lazy(() => import("views/app/ReferralTreeView")),
+      },
+      {
+        exact: true,
+        path: "/app/withdrawal",
+        title: "Withdrawal",
+        component: lazy(() => import("views/app/WithdrawalView")),
+      },
+      {
+        exact: true,
         path: "/app/setting",
         title: "Settings",
         component: lazy(() => import("views/app/SettingView")),
