@@ -83,7 +83,7 @@ const DashboardView = () => {
   const classes = useStyles();
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"), {
-    defaultMatches: true,
+    noSsr: true,
   });
 
   return (
