@@ -1,12 +1,12 @@
-// import { Redirect } from 'react-router-dom';
-// import { useSelector } from 'store';
+import { Redirect } from "react-router-dom";
+import { useSelector } from "store";
 
 const GuestGuard = ({ children }) => {
-  //   const { isAuthenticated } = useSelector(state => state.auth);
+  const { isAuthenticated } = useSelector((state) => state.auth);
 
-  //   if (isAuthenticated) {
-  //     return <Redirect to="/app/dashboard" />;
-  //   }
+  if (isAuthenticated) {
+    return <Redirect to="/app/dashboard" />;
+  }
 
   return <>{children}</>;
 };

@@ -18,6 +18,11 @@ import {
   TextField,
 } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useDispatch, useSelector } from "store";
+import { login } from "slices/auth";
 import {
   Share2,
   DollarSign,
@@ -41,11 +46,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const validationSchema = yup.object().shape({
+  email: yup.string().required("Email is required").email("Email is invalid"),
+  password: yup
+    .string()
+    .required("Password is required")
+    .min(8, "Password must be at least 8 characters")
+    .matches(/\d/, "Password must contain at least 1 number")
+    .matches(/[a-zA-Z]/, "Password must contain at least 1 letter"),
+});
+
 const LoginView = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"), {
     defaultMatches: true,
+  });
+
+  const { isSubmitting } = useSelector((state) => state.auth);
+
+  const { register, handleSubmit, errors } = useForm({
+    resolver: yupResolver(validationSchema),
   });
 
   return (
@@ -57,6 +79,7 @@ const LoginView = () => {
               <CardContent style={{ padding: 0 }}>
                 <Grid container justify="center">
                   <Grid item xs={12} sm={8} md={6}>
+                    {isSubmitting && <LinearProgress color="secondary" />}
                     <Box py={4} px={isSmall ? 4 : 6} textAlign="center">
                       <Box pb={4}>
                         <img
@@ -70,33 +93,50 @@ const LoginView = () => {
                       </Typography>
                       <br />
                       <br />
-                      <TextField
-                        id="email"
-                        name="email"
-                        label="Email"
-                        variant="outlined"
-                        fullWidth
-                      />
-                      <Box my={2}>
+                      <form
+                        noValidate
+                        onSubmit={handleSubmit(async (data) => {
+                          await dispatch(login(data));
+                        })}
+                      >
                         <TextField
-                          id="password"
-                          name="password"
-                          label="Password"
-                          type="password"
+                          id="email"
+                          name="email"
+                          label="Email"
                           variant="outlined"
                           fullWidth
+                          defaultValue="wxupu@gmail.com"
+                          inputRef={register}
+                          error={!!errors.email}
+                          helperText={errors.email?.message}
                         />
-                      </Box>
-                      <Button
-                        color="primary"
-                        variant="contained"
-                        fullWidth
-                        startIcon={<LogIn />}
-                      >
-                        <Box my={1}>
-                          <Typography variant="subtitle2">Log In</Typography>
+                        <Box my={2}>
+                          <TextField
+                            id="password"
+                            name="password"
+                            label="Password"
+                            type="password"
+                            variant="outlined"
+                            fullWidth
+                            defaultValue="Password123@"
+                            inputRef={register}
+                            error={!!errors.password}
+                            helperText={errors.password?.message}
+                          />
                         </Box>
-                      </Button>
+                        <Button
+                          color="primary"
+                          variant="contained"
+                          type="submit"
+                          fullWidth
+                          disabled={isSubmitting}
+                          startIcon={<LogIn />}
+                        >
+                          <Box my={1}>
+                            <Typography variant="subtitle2">Log In</Typography>
+                          </Box>
+                        </Button>
+                      </form>
                       <Box my={2}>
                         <Typography variant="caption">
                           <Link component={NavLink} to="/" underline="always">

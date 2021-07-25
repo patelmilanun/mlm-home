@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { useState, useEffect, useCallback } from "react";
+import { NavLink, useHistory } from "react-router-dom";
 import {
   Typography,
   Divider,
@@ -24,9 +24,9 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "store";
-import { signup, fetchPaymentStatus } from "slices/auth";
+import { signup, fetchPaymentStatus, fetchPaymentLink } from "slices/auth";
 import { Lock, LogIn } from "react-feather";
-import { Check } from "react-feather";
+import { Check, X } from "react-feather";
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -39,6 +39,16 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
   },
 }));
+
+const num = 8;
+const randomNameGenerator = (num) => {
+  let res = "";
+  for (let i = 0; i < num; i++) {
+    const random = Math.floor(Math.random() * 27);
+    res += String.fromCharCode(97 + random);
+  }
+  return res;
+};
 
 const validationSchema = yup.object().shape({
   name: yup.string().required("Full name is required"),
@@ -61,26 +71,44 @@ const validationSchema = yup.object().shape({
 
 var fetchInterval;
 var timer = 60;
+var userVar;
 const RegisterView = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"), {
     defaultMatches: true,
   });
 
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(history.location.state?.step ?? 0);
   const [seconds, setSeconds] = useState(60);
 
-  const { paymentLink, paymentStatus, user } = useSelector(
+  const { paymentLink, paymentStatus, user, isSubmitting } = useSelector(
     (state) => state.auth
   );
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(validationSchema),
   });
 
+  const onFocus = useCallback(() => {
+    if (fetchInterval) {
+      setTimeout(async () => {
+        timer = 60;
+        await dispatch(fetchPaymentStatus({ userId: userVar.id }));
+      }, 5000);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (history.location.state !== null) {
+      history.replace();
+    }
+  }, []);
+
   useEffect(() => {
     if (step === 2) {
+      userVar = user;
       fetchInterval = setInterval(async () => {
         timer--;
         if (timer < 1) {
@@ -94,6 +122,20 @@ const RegisterView = () => {
       clearInterval(fetchInterval);
     };
   }, [step, user]);
+
+  useEffect(() => {
+    if (
+      paymentStatus === "paymentCompleted" ||
+      paymentStatus === "paymentFailed"
+    ) {
+      window.removeEventListener("focus", onFocus);
+      clearInterval(fetchInterval);
+    } else window.addEventListener("focus", onFocus);
+
+    return () => {
+      window.removeEventListener("focus", onFocus);
+    };
+  }, [paymentStatus]);
 
   return (
     <>
@@ -110,6 +152,7 @@ const RegisterView = () => {
                     md={6}
                     style={{ minHeight: "700px" }}
                   >
+                    {isSubmitting && <LinearProgress color="secondary" />}
                     <Box py={4} px={isSmall ? 4 : 6} textAlign="center">
                       <Box pb={4}>
                         <img
@@ -138,6 +181,7 @@ const RegisterView = () => {
                                 label="Full Name"
                                 variant="outlined"
                                 fullWidth
+                                defaultValue={randomNameGenerator(5)}
                                 required
                                 inputRef={register}
                                 error={!!errors.name}
@@ -151,6 +195,9 @@ const RegisterView = () => {
                                 label="Email"
                                 variant="outlined"
                                 fullWidth
+                                defaultValue={`${randomNameGenerator(
+                                  5
+                                )}@gmail.com`}
                                 required
                                 inputRef={register}
                                 error={!!errors.email}
@@ -165,6 +212,7 @@ const RegisterView = () => {
                                 type="password"
                                 variant="outlined"
                                 fullWidth
+                                defaultValue="Password123@"
                                 required
                                 inputRef={register}
                                 error={!!errors.password}
@@ -190,6 +238,10 @@ const RegisterView = () => {
                                   variant="outlined"
                                   fullWidth
                                   required
+                                  defaultValue={
+                                    Math.floor(Math.random() * 1000000000) +
+                                    6000000000
+                                  }
                                   inputRef={register}
                                   error={!!errors.phoneNumber}
                                   helperText={
@@ -220,6 +272,7 @@ const RegisterView = () => {
                               variant="contained"
                               type="submit"
                               fullWidth
+                              disabled={isSubmitting}
                               startIcon={<LogIn />}
                             >
                               <Box my={1}>
@@ -299,25 +352,64 @@ const RegisterView = () => {
                         <>
                           <Box my={8}>
                             <Typography variant="subtitle2">
-                              Once you complete payment, we'll show you the
-                              status here. Next status check in
+                              {paymentStatus === "paymentCompleted" &&
+                                "Yey! the payment got approved. It is succeed."}
+                              {paymentStatus === "paymentFailed" &&
+                                "Sorry the payment can't make through. It is failed."}
+                              {paymentStatus === "paymentPending" &&
+                                "Once you complete payment, we'll show you the status here. Next status check in"}
                             </Typography>
                             <br />
                             <br />
-                            <Typography variant="h1">{seconds} sec</Typography>
+                            {paymentStatus === "paymentPending" && (
+                              <Typography variant="h1">
+                                {seconds} sec
+                              </Typography>
+                            )}
                             <br />
                             <Link
                               component="button"
                               variant="subtitle1"
+                              disabled={isSubmitting}
                               onClick={async () => {
-                                timer = 60;
-                                await dispatch(
-                                  fetchPaymentStatus({ userId: user.id })
-                                );
+                                if (paymentStatus === "paymentCompleted") {
+                                  history.push("/auth/login");
+                                } else if (paymentStatus === "paymentFailed") {
+                                  await dispatch(
+                                    fetchPaymentLink({ userId: user.id })
+                                  );
+                                  setStep(step - 1);
+                                } else {
+                                  timer = 60;
+                                  await dispatch(
+                                    fetchPaymentStatus({ userId: user.id })
+                                  );
+                                }
                               }}
                             >
-                              check now
+                              {paymentStatus === "paymentCompleted"
+                                ? "login now"
+                                : paymentStatus === "paymentFailed"
+                                ? "retry now"
+                                : "check now"}
                             </Link>
+                            <br />
+                            {paymentStatus === "paymentPending" && (
+                              <Link
+                                component="button"
+                                variant="subtitle1"
+                                disabled={isSubmitting}
+                                onClick={() => {
+                                  window.open(
+                                    paymentLink,
+                                    "",
+                                    "width=1000, height=1000"
+                                  );
+                                }}
+                              >
+                                re-open payment dialog?
+                              </Link>
+                            )}
                           </Box>
                           <Box mb={2}>
                             <Button
@@ -328,6 +420,8 @@ const RegisterView = () => {
                               startIcon={
                                 paymentStatus === "paymentCompleted" ? (
                                   <Check size={20} />
+                                ) : paymentStatus === "paymentFailed" ? (
+                                  <X size={20} />
                                 ) : (
                                   <CircularProgress size={20} color="primary" />
                                 )
@@ -337,6 +431,8 @@ const RegisterView = () => {
                                 <Typography variant="subtitle2">
                                   {paymentStatus === "paymentCompleted"
                                     ? "Payment Completed"
+                                    : paymentStatus === "paymentFailed"
+                                    ? "Payment Failed"
                                     : "Please Wait"}
                                 </Typography>
                               </Box>
