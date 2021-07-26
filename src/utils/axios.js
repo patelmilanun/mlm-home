@@ -1,5 +1,6 @@
 import axios from "axios";
 import { getAccessToken } from "utils/auth";
+import CustomSnackbar from "components/CustomSnackbar";
 
 // const baseURL = "https://api.inspireonic.com";
 const baseURL = "http://localhost:5000";
@@ -29,10 +30,13 @@ instance.interceptors.response.use(
   (error) => {
     if (!error.response)
       if (!navigator.onLine) {
-        // toast.error("You are offline. Please check Internet Connection.");
+        CustomSnackbar(
+          "error",
+          "You are offline. Please check Internet Connection."
+        );
         return Promise.reject(error);
       } else {
-        // toast.error("Our Server API is not working at the moment.");
+        CustomSnackbar("error", "Our Server is not working at the moment.");
         return Promise.reject(error);
       }
     return Promise.reject(error);
@@ -51,10 +55,13 @@ instanceNoAuth.interceptors.response.use(
   (error) => {
     if (!error.response)
       if (!navigator.onLine) {
-        // toast.error("You are offline. Please check Internet Connection.");
+        CustomSnackbar(
+          "error",
+          "You are offline. Please check Internet Connection."
+        );
         return Promise.reject(error);
       } else {
-        // toast.error("Our Server API is not working at the moment.");
+        CustomSnackbar("error", "Our Server is not working at the moment.");
         return Promise.reject(error);
       }
     return Promise.reject(error);
