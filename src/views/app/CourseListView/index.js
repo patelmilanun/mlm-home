@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import {
   Typography,
@@ -16,7 +17,9 @@ import {
   useMediaQuery,
 } from "@material-ui/core";
 import { history } from "utils/history";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
+import { useDispatch, useSelector } from "store";
+import { fetchCourses } from "slices/course";
 import {
   Share2,
   DollarSign,
@@ -53,10 +56,13 @@ const useStyles = makeStyles((theme) => ({
 
 const CourseListView = () => {
   const classes = useStyles();
-  const theme = useTheme();
-  const isSmall = useMediaQuery(theme.breakpoints.down("sm"), {
-    defaultMatches: true,
-  });
+  const dispatch = useDispatch();
+
+  const { courses } = useSelector((state) => state.course);
+
+  useEffect(() => {
+    dispatch(fetchCourses());
+  }, []);
 
   return (
     <>
