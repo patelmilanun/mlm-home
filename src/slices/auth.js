@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import CustomSnackbar from "components/CustomSnackbar";
+import CustomSnackbar from "../components/CustomSnackbar";
 import axios, { instanceNoAuth as axiosNoAuth } from "utils/axios";
 import { history } from "utils/history";
 import { setSession, getAccessToken } from "utils/auth";
