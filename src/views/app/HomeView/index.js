@@ -97,8 +97,8 @@ const HomeView = () => {
                 <Box textAlign="center">
                   {[
                     { label: "Home", path: "/" },
-                    { label: "About Us", path: "/about" },
-                    { label: "Contact Us", path: "/contact" },
+                    // { label: "About Us", path: "/about" },
+                    // { label: "Contact Us", path: "/contact" },
                   ].map((link, index) => {
                     return (
                       <Box key={index} mx={2} display="inline">
@@ -122,7 +122,7 @@ const HomeView = () => {
               </Grid>
               <Grid item xs={4}>
                 <Box textAlign="right">
-                  <Box display="inline" mr={3}>
+                  {/* <Box display="inline" mr={3}>
                     <Link
                       className={classes.link}
                       color="inherit"
@@ -150,7 +150,7 @@ const HomeView = () => {
                         </Typography>
                       </Box>
                     </Button>
-                  </Box>
+                  </Box> */}
                 </Box>
               </Grid>
             </Grid>
@@ -181,10 +181,10 @@ const HomeView = () => {
                 <br />
                 <Button
                   className={classes.signupBtn}
-                  component={NavLink}
+                  // component={NavLink}
                   color="primary"
                   variant="contained"
-                  to={"/app/dashboard"}
+                  // to={"/app/dashboard"}
                 >
                   <Typography display="inline" variant="subtitle2">
                     <Box px={4} py={1}>
@@ -454,8 +454,8 @@ const HomeView = () => {
           <Box textAlign="center" mb={4}>
             {[
               { label: "Home", path: "/" },
-              { label: "About Us", path: "/about" },
-              { label: "Contact Us", path: "/contact" },
+              // { label: "About Us", path: "/about" },
+              // { label: "Contact Us", path: "/contact" },
             ].map((link, index) => {
               return (
                 <Box key={index} mx={2} display="inline">
